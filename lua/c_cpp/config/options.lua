@@ -1,4 +1,5 @@
-vim.cmd("let g:newrt_liststyle = 3")
+vim.cmd("let g:loaded_netrw = 0")
+vim.cmd("let g:loaded_netrwPlugin = 0")
 
 local o = vim.opt
 

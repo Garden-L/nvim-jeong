@@ -13,15 +13,25 @@ local function is_neotree_open()
   end
   return false -- Neo-tree 창이 열려 있지 않음
 end
+-- tab
+map("n", "<leader>tt", "<cmd>tabnext<cr>")
+map("n", "<leader>tT", "<cmd>tabprev<cr>")
+map("n", "<leader>tn", "<cmd>tabnew %:p<cr>")
+map("n", "<leader>tc", "<cmd>tabclose<cr>")
+
+vim.keymap.set("n", "<leader>ui", function()
+	vim.ui.input({prompt="tba name", relative='editor', position='center'}, function(input) 
+		if input and input ~="" then
+			vim.cmd("tabnew " .. input)
+		else 
+			vim.cmd("tabnew %:p")
+		end
+	end)
+end
+)
+
 -- Neotree
-map("n", "<leader>e", function ()
-  -- 현재 활성 윈도우의 버퍼 타입 확인
-  if is_neotree_open() then
-    vim.cmd("Neotree close") -- Neo-tree 닫기
-  else
-    vim.cmd("Neotree focus")  -- Neo-tree 열기
-  end
-end)
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree focus window" })
 
 -- pane navigation
 map("n", "<C-h>", "<C-w>h")  -- left
@@ -31,7 +41,7 @@ map("n", "<C-l>", "<C-w>l")  -- right
 
 
 -- clear search highlight
-map("n", "<leader>h", ":nohlsearch<CR>")
+map("n", "<leader>l", ":nohlsearch<CR>")
 
 
 -- telescope
