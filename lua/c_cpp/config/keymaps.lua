@@ -13,22 +13,45 @@ local function is_neotree_open()
   end
   return false -- Neo-tree 창이 열려 있지 않음
 end
--- tab
-map("n", "<leader>tt", "<cmd>tabnext<cr>")
-map("n", "<leader>tT", "<cmd>tabprev<cr>")
-map("n", "<leader>tn", "<cmd>tabnew %:p<cr>")
+
+-- set tab
+map("n", "<leader>t<tab>", "<cmd>tabnext<cr>")
+map("n", "<leader>t<S-tab>", "<cmd>tabprev<cr>")
 map("n", "<leader>tc", "<cmd>tabclose<cr>")
 
-vim.keymap.set("n", "<leader>ui", function()
-	vim.ui.input({prompt="tba name", relative='editor', position='center'}, function(input) 
-		if input and input ~="" then
-			vim.cmd("tabnew " .. input)
-		else 
-			vim.cmd("tabnew %:p")
-		end
-	end)
-end
-)
+vim.keymap.set("n", "<leader>tn", function()
+	local telescope = require('telescope.builtin')
+	local actions = require('telescope.actions')
+	local action_state = require('telescope.actions.state')
+
+	telescope.find_files({
+		prompt_title = "Search and Open in New Tab",
+    cwd = vim.fn.getcwd(),
+		previewer = false,
+    attach_mappings = function(prompt_bufnr, map)
+			actions.select_default:replace(function()
+				-- Telescope 닫기
+				actions.close(prompt_bufnr)
+
+				-- 선택된 항목 가져오기
+						-- 선택한 파일 경로
+						local file_path = action_state.get_selected_entry().path
+						
+						if file_path then
+							-- 새 탭에서 열기
+							vim.cmd("tabedit " .. file_path)
+						end
+			end)
+			return true
+    end,
+		layout_config = {
+			width = 0.25,
+			height = 0.25,
+			prompt_position = "top",
+		},
+		sorting_strategy = "ascending",
+})
+end)
 
 -- Neotree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree focus window" })
@@ -86,7 +109,6 @@ map("n", "<leader>h", function()
 map("n", "<leader>v", function()
     require("nvchad.term").new { pos = "vsp" }
     end, { desc = "terminal new vertical term" })
-
 
 
 map("n", "<C-n>", function()

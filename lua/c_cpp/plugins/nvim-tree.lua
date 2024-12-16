@@ -12,7 +12,13 @@ return {
 				width = 35,
 				relativenumber = true,
 			},
-
+			tab = {
+				sync = {
+					open = true,
+					close = false,
+					ignore = {}
+				}
+			},
 			renderer = {
 				indent_markers = {
 					enable = true,
