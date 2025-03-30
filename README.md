@@ -7,4 +7,4 @@ sudo cp -r ~/neovim/lib /lib/
 sudo cp -r ~/neovim/share/ /usr/
 sudo apt install -y git libnuv1-dev nodejs
 git clone https://github.com/Garden-L/nvim-jeong.git ~/.config/nvim && nvim
-```
+
