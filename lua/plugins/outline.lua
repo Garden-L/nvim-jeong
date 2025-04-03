@@ -5,7 +5,7 @@ return
   "hedyhli/outline.nvim",
   enabled=false,
   config = function()
- 0   -- Example mapping to toggle outline
+   -- Example mapping to toggle outline
     vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>",
       { desc = "Toggle Outline" })
 
