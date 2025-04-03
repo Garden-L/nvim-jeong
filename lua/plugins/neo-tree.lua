@@ -46,6 +46,7 @@ return {
       },
     default_component_configs = 
       {
+	-- Remove marks. 
 	indent = 
 	{
 	  with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
@@ -53,6 +54,12 @@ return {
 	  expander_expanded = " ",
 	  expander_highlight = "NeoTreeExpander",
 	},
+	git_status = {
+          symbols = {
+            unstaged = " ",
+            staged = " ",
+          },
+        },
       },
   },
 
