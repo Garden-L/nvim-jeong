@@ -1,10 +1,11 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
   },
-  keys = 
+  keys =
   {
     {
       "<leader>e",
@@ -17,10 +18,15 @@ return {
 
   lazy = false,
 
-  opts = 
+  opts =
   {
     sources = { "filesystem" },
-    window = 
+      filesystem = {
+        bind_to_cwd = false,
+        follow_current_file = { enabled = true },
+        use_libuv_file_watcher = true,
+      },
+    window =
       {
 	-- auto_expand_width = false,
 	mappings = 
@@ -63,8 +69,17 @@ return {
       },
   },
 
-  config = 
-    function(_, opts)
-      require("neo-tree").setup(opts)
-    end,
+  config = function(_, opts)
+    local function on_move(data)
+      Snacks.rename.on_rename_file(data.source, data.destination)
+    end
+
+    local events = require("neo-tree.events")
+    opts.event_handlers = opts.event_handlers or {}
+    vim.list_extend(opts.event_handlers, {
+      { event = events.FILE_MOVED, handler = on_move },
+      { event = events.FILE_RENAMED, handler = on_move },
+    })
+    require("neo-tree").setup(opts)
+  end,
 }

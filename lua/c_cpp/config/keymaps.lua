@@ -3,21 +3,6 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
-local function is_neotree_open()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-    if ft == "neo-tree" then
-      return true -- Neo-tree 창이 열려 있음
-    end
-  end
-  return false -- Neo-tree 창이 열려 있지 않음
-end
-
--- set tab
-map("n", "<leader>t<tab>", "<cmd>tabnext<cr>")
-map("n", "<leader>t<S-tab>", "<cmd>tabprev<cr>")
-map("n", "<leader>tc", "<cmd>tabclose<cr>")
 
 vim.keymap.set("n", "<leader>tn", function()
 	local telescope = require('telescope.builtin')
