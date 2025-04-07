@@ -18,6 +18,8 @@ return
 	  {
 	    "lua_ls",
 	    "clangd",
+	    "cmake",
+	    "bashls",
 	  }
       },
 
@@ -41,6 +43,8 @@ return
 	local lspconfig = require("lspconfig")
 	lspconfig.lua_ls.setup({})
 	lspconfig.clangd.setup({})
+	lspconfig.cmake.setup({})
+	lspconfig.bashls.setup({})
       end
   }
 }

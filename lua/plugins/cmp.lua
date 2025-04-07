@@ -24,6 +24,7 @@ return
 	  {
 	    { name = "nvim_lsp" },
 	    { name = "cmp-buffer" },
+	    { name = "luasnip"}
 	  },
 
 	-- cmp.mapping.preset.insert 자동 완성창이 켜진상태에서의 키매핑이다.
@@ -31,7 +32,7 @@ return
 	  cmp.mapping.preset.insert({
 	    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
 	    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-	    ['<C-Space>'] = cmp.mapping.complete(),
+	    ['<C-Space>'] = cmp.mapping.confirm({ select = true}),
 	    ['<C-e>'] = cmp.mapping.abort(),
 	    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item.
 	    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
