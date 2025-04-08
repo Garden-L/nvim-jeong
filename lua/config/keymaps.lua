@@ -32,4 +32,4 @@ map("n", "<leader>wh", "<cmd>vertical resize -5<cr>", { desc = "Window size up",
 map("n", "<leader>aa", "ggVG")
 map("n", "<leader>p", "\"0p")
 map("n", "<leader>P", "\"0P")
-
+map("n", "<C-c>", "\"+y")
