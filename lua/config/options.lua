@@ -7,4 +7,6 @@ opt.smartcase = true
 opt.ignorecase = true
 opt.shiftwidth = 2 -- Size of an indent
 opt.wrap=false -- Disable line wrap
+opt.number=true -- real number 
+opt.scrolloff=10 -- margin 
 -- opt.tabstop = 2 -- Number of spaces tabs count for

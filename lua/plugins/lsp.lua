@@ -11,15 +11,16 @@ return
 
   {
     "williamboman/mason-lspconfig.nvim",
-    
-    opts = 
+
+    opts =
       {
-	ensure_installed = 
+	ensure_installed =
 	  {
 	    "lua_ls",
 	    "clangd",
 	    "cmake",
 	    "bashls",
+	    "rust_analyzer",
 	  }
       },
 
@@ -45,6 +46,7 @@ return
 	lspconfig.clangd.setup({})
 	lspconfig.cmake.setup({})
 	lspconfig.bashls.setup({})
+	lspconfig.rust_analyzer.setup({})
       end
   }
 }
